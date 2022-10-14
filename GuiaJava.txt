@@ -1,0 +1,3913 @@
+
+
+### Git e GitHub
+
+# Principais comandos:
+
+# Abrir Git Bash terminal na pasta do projeto, clicando no lado direito do mouse.
+
+git init                      - ativa a pasta no Git
+
+git clone                     - recupera um repositório inteiro de um                                     local hospedado via URL
+
+git status                    - verifica a situação dos arquivos
+
+git add .                     - adiciona todos os arquivos para commit
+
+git commit -m  "texto curto"  - prepara os arquivos para serem enviados
+
+git push                      - envia para GitHub
+
+git stash                     - salva os arquivos sem commit
+
+git stash apply               - baixa conteudo salvo
+
+git branch                    - verifica as branches disponiveis
+
+git branch [nome branch]      - cria nova branches
+
+git checkout [nome branch]    - muda para outra ramificação 
+
+git merge [nome branch]       - mesclar a branch especificado na atual
+
+# Trocar nome branch
+
+git branch -m main master
+git fetch origin
+git branch -u origin/master master
+git remote set-head origin -a
+
+# Criando novo repositório e dando o primeiro push
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/FernandoAndrada/teste2.git
+git push -u origin main
+
+#### iterando em listas
+
+case 1:
+
+                for(int i = 0; i < pedagogos.size(); i++) {
+                    if (pedagogos.get(i).getAtendimento().equals("sim")) {
+                        System.out.println(pedagogos.get(i));
+                    }
+                }
+                        System.out.println(" ");
+                        menuBoasVindas();
+
+                break;
+
+#### Exeção somátorio Numeros
+
+package M2S04exercicio04somatoriaDeNumeros;//Crie um programa que receba n números e some esses números enquanto a soma não for superior a 100.
+// O programa deverá imprimir o valor somado (antes de atingir o número maior que 100) e deverá
+// informar quantos números foram somados e qual a média.
+//
+// Refaça seu programa utilizando as seguintes regras:
+//
+//a. Utilize os tratamentos de exceção para lidar com a entrada de dados.
+//
+//b. Quando a soma for superior a 100, o programa deverá gerar uma exceção criada
+//pelo programador, com nome ExcecaoAcimaDeCem.
+
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+
+public class M2S04exer04SomaDeNumeros {
+    public static void main(String[] args) {
+
+        int soma = 0;
+        List<Integer> numeros = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+
+        do {
+                System.out.println("Digite um número inteiro: ");
+                int numeroDigitado = scanner.nextInt();
+                numeros.add(numeroDigitado);
+                soma = 0;
+                for (int i = 0; i < numeros.size(); i++) {
+                    soma += numeros.get(i);
+
+                }
+
+
+        } while ((soma <= 100));
+
+
+            System.out.println("Soma é: " + soma);
+            System.out.println("Foram somados " + numeros.size() + " números.");
+            System.out.println("E a média é: " + soma / numeros.size());
+            System.out.println(numeros);
+
+            throw new ExcecaoAcimaDeCem();
+
+
+        } catch (ExcecaoAcimaDeCem e) {
+            System.out.println(e.getMessage());
+        } catch (InputMismatchException e){
+            System.out.println("Você não digitou um número.");
+        }finally {
+            System.out.println("Programa encerrado!");
+        }
+    }
+
+
+
+
+}
+
+#### Forma de Pagamento
+
+package m2S04exercicio03FormaDePagamento;
+//Realize uma venda através de um Menu solicitando ao usuário a forma de pagamento que será escolhida.
+// Entrada deverá ser do tipo Double com o valor da cobrança e forma de pagamento disponível conforme listado:
+//Para pagamentos Pix 15% de desconto
+//Para pagamentos Boleto 10% de desconto
+//Para pagamentos no Cartão podem ser escolhidos:
+//Cartão Débito 5% de desconto
+//Cartão Crédito não disponibiliza desconto, porém poderá ser dividido em até 12X
+//
+//Apenas para cartão de crédito poderá ser informado parcelamento com a regra de até 12 Vezes sem juros
+
+
+public abstract  class FormaDePagamento {
+
+   public Double formaDePagamento(){
+       return null;
+   }
+}
+
+#### Exceção exercicio somar numero
+
+import java.util.Scanner;
+
+public class SomarNumeros {
+    public static Scanner scanner = new Scanner(System.in);
+    public static int numero;
+
+    public static void main(String[] args) {
+
+        obterIntValido();
+    }
+
+    private static void obterIntValido() {
+
+        try {
+            System.out.println("Digite um numero inteiro: ");
+            int numero = scanner.nextInt();
+            obterIntValido();
+
+        } catch (Exception e) {
+            System.out.println("Você não digitou um numero inteiro");
+        }
+    }
+
+}
+
+#### Interfaces
+
+abrir 3 pacotes(package)
+- aplication (em aplication fica o main)
+- entities (em entities ficam as classes)
+- services
+
+
+
+package entities;
+// Nosso banco precisa tributar dinheiro de alguns bens que nossos clientes possuem.
+// Para isso, vamos criar uma interface para o cálculo dos tributos.
+//
+
+//}
+//
+//Lemos essa interface da seguinte maneira: "todos que quiserem ser tributável precisam saber calcular tributos,
+// devolvendo um double".
+//
+//Alguns bens são tributáveis e outros não, ContaPoupanca não é tributável, já para ContaCorrente
+// você precisa pagar 1% da conta
+//
+//Escreva a classe que implemente esta interface e calcule o tributo de acordo com a regra de negócio acima.
+
+
+public abstract class Conta {
+
+
+}
+
+
+package entities;
+
+public class ContaPoupanca extends Conta {
+
+
+}
+
+
+package entities;
+
+public class ContaCorrente extends Conta implements Tributavel {
+
+
+    @Override
+    public Double calculaTributos() {
+        return null;
+    }
+}
+
+
+package entities;
+//interface Tributavel {
+//  double calculaTributos();
+
+
+public interface Tributavel {
+
+   public abstract Double calculaTributos(); // obrigado a ser public abstract na interface
+
+
+}
+
+
+
+
+#### M2S03 Gerenciador empréstimos livros
+
+//Escreva uma classe chamada Aluno que também herda Pessoa e possui o atributo String numeroMatricula.
+// Deverá possuir um construtor com todos os atributos, os métodos get e set e uma sobreescrita
+// do método calcularDiaria aplicando um desconto de 95%
+
+
+
+public class Aluno extends Pessoa {
+
+    //Atributos
+    private String numeroMatricula;
+
+    //Metodos
+
+    public Aluno(String numeroMatricula) {
+        this.numeroMatricula = numeroMatricula;
+    }
+
+    public Aluno(String nome, String cpf, String numeroMatricula) {
+        super(nome, cpf);
+        this.numeroMatricula = numeroMatricula;
+    }
+
+    public String getNumeroMatricula() {
+        return numeroMatricula;
+    }
+
+    public void setNumeroMatricula(String numeroMatricula) {
+        this.numeroMatricula = numeroMatricula;
+    }
+
+    @Override
+    public Double calcularDiaria(int quantidadeDias, Double valorDiaria) {
+        return  ((quantidadeDias*valorDiaria)-((quantidadeDias * valorDiaria)*0.95));
+    }
+}
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GerenciadorLivroMain {
+    public static void main(String[] args) {
+
+        List<Livro> livros = new ArrayList<>();
+        List<Aluno> alunos = new ArrayList<>();
+        List<Professor> professores = new ArrayList<>();
+        List<Pessoa> pessoas = new ArrayList<>();
+
+        Livro livro1 = new Livro("DDD",73.50);
+        Livro livro2 = new Livro("Código Limpo",71.89);
+        Livro livro3 = new Livro("Java: Como programar",360.38);
+
+        Aluno aluno1 = new Aluno("Fernando aluno","888.888.888-3","100");
+
+        Professor professor1 = new Professor("Fernando professor","999.999.999-4","Java");
+
+        Pessoa pessoa1 = new Pessoa("Fernando Pessoa","777.777.777-5");
+
+
+
+        System.out.println(Math.round(pessoa1.calcularDiaria(2,73.50)));
+        System.out.println(Math.round(aluno1.calcularDiaria(7,71.89)));
+        System.out.println(Math.round(professor1.calcularDiaria(1,360.28)));
+
+    }
+}
+
+
+//Agora escreva uma classe chamada livro com os seguintes atributos:
+// String titulo, Double valorDiaria.
+// deverá possuir um construtor com todos os atributos e os métodos get e set.
+public class Livro {
+
+    //Atributos
+    private String titulo;
+    private Double valorDiaria;
+
+    //Metodos
+
+
+    public Livro() {
+    }
+
+    public Livro(String titulo, Double valorDiaria) {
+        this.titulo = titulo;
+        this.valorDiaria = valorDiaria;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Double getValorDiaria() {
+        return valorDiaria;
+    }
+
+    public void setValorDiaria(Double valorDiaria) {
+        this.valorDiaria = valorDiaria;
+    }
+}
+
+
+//Escreva uma classe chamada Pessoa com os seguintes atributos:
+// String nome e String cpf. Esta classe deverá possuir um construtor com todos os atributos,
+// os métodos get e set e um método chamado calcularDiaria que retorna um Double referente ao
+// valor total do empréstimo de um livro e recebe como parametro dois atributos:
+// int quantidadeDias e Double valorDiaria.
+
+
+public class Pessoa {
+
+    // Atributos
+    private String nome;
+    private String cpf;
+
+    // Metodos
+
+
+    public Pessoa() {
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Pessoa(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
+    public Double calcularDiaria (int quantidadeDias, Double valorDiaria){
+        return quantidadeDias * valorDiaria;
+    }
+}
+
+
+//Em seguida, escreva uma classe chamada Professor que herda Pessoa e possui o atributo String disciplina.
+// Deverá possuir um construtor com todos os parametros, os métodos get e set e uma sobreescrita do método
+// calcularDiaria aplicando um desconto de 75%.
+
+public class Professor extends Pessoa {
+
+    //Atributo
+    private String disciplina;
+
+    //Metodos
+
+
+    public Professor(String disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    public Professor(String nome, String cpf, String disciplina) {
+        super(nome, cpf);
+        this.disciplina = disciplina;
+    }
+
+    public String getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    @Override
+    public Double calcularDiaria(int quantidadeDias, Double valorDiaria) {
+        return ((quantidadeDias*valorDiaria)-((quantidadeDias * valorDiaria)*0.75));
+    }
+}
+
+
+#### M2S03 Calculando áreas (sobre carga e sobre escrita)
+
+public class AreaMain {
+    public static void main(String[] args) {
+
+        Quadrado quadrado = new Quadrado();
+        Circulo circulo = new Circulo();
+        Triangulo triangulo = new Triangulo();
+        Losango losango = new Losango();
+
+        System.out.println("Calculando áreas");
+        System.out.println("<<<<<<<>>>>>>>>>");
+
+
+        triangulo.setAltura(3.0);
+        triangulo.setBase(5.0);
+        System.out.println("A área do triangulo é: "+ triangulo.calcularArea());
+
+        quadrado.setLado(2.0);
+        System.out.println("A área do quadrado é: "+ quadrado.calcularArea());
+
+        losango.setDiagonalMaior(3.0);
+        losango.setDiagonalMenor(4.0);
+        System.out.println("A área do losango é: " + losango.calcularArea());
+
+        circulo.setRaio(2.0);
+        System.out.println("A área do circulo é: "+ Math.round(circulo.calcularArea()));
+
+
+
+
+    }
+}
+
+
+public class Circulo extends FiguraGeometrica{
+
+    private double raio;
+
+    public double getRaio() {
+        return raio;
+    }
+
+    public void setRaio(double raio) {
+        this.raio = raio;
+    }
+
+    @Override
+    public Double calcularArea() {
+        return Math.PI * Math.pow(this.raio,2.0);
+    }
+}
+
+//Implemente uma classe FiguraGeometrica que conterá os métodos:
+// double calcularArea(Double valor1) e a sua sobrecarga double calcularArea(Double valor1,
+// Double valor2). Após isso Implemente as classes Triangulo com os atributos base e altura,
+// Quadrado com o atributo lado, Losango com os atributos diagonalMaior e diagonalMenor e a
+// classe Circulo com o atributo raio. Todas as classes deverão herdar a classe FiguraGeometrica
+// e deverá sobreescrever o método calcularArea de acordo com sua necessidade. Por fim, Crie
+//uma classe main e implemente objetos do tipo Triangulo, Losango, Circulo e Quadrado e imprima no
+// console os valores retornados nos seus respectivos métodos calcularArea.
+//
+//dados:
+//
+//Área do Triangulo = base*altura/2
+//Área do quadrado =- lado²
+//Área do losango = diagonalMaior * diagonalMenor/2
+//Área do circulo = pi * raio²
+//
+//Seguir as boas práticas: encapsulamento, construtores e etc.
+
+public abstrat class FiguraGeometrica {
+
+    public Double calcularArea(){
+        return null;
+    }
+}
+
+
+public class Losango extends FiguraGeometrica {
+
+    private Double diagonalMaior;
+    private Double diagonalMenor;
+
+    public Double getDiagonalMaior() {
+        return diagonalMaior;
+    }
+
+    public void setDiagonalMaior(Double diagonalMaior) {
+        this.diagonalMaior = diagonalMaior;
+    }
+
+    public Double getDiagonalMenor() {
+        return diagonalMenor;
+    }
+
+    public void setDiagonalMenor(Double diagonalMenor) {
+        this.diagonalMenor = diagonalMenor;
+    }
+
+    @Override
+    public Double calcularArea() {
+        return (this.diagonalMaior * this.diagonalMenor)/2;
+    }
+}
+
+
+public class Quadrado extends FiguraGeometrica {
+
+    private Double lado;
+
+    public Double getLado() {
+        return lado;
+    }
+
+    public void setLado(Double lado) {
+        this.lado = lado;
+    }
+
+    @Override
+    public Double calcularArea() {
+        return Math.pow(this.lado,2);
+    }
+}
+
+
+public class Triangulo extends FiguraGeometrica {
+
+    private double base;
+    private double altura;
+
+    public double getBase() {
+        return base;
+    }
+
+    public void setBase(double base) {
+        this.base = base;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+
+    @Override
+    public Double calcularArea() {
+        return (this.base * this.altura) / 2;
+    }
+}
+
+
+#### M2S03 Treinando Sobrecarga
+
+public class PC {
+    //Atributos
+    int memoriaRam;
+    String processador;
+    int tela;
+    System placaVideoDedicada;
+    String capacidadeArmazenamento;
+
+    public PC() {
+    }
+
+    public PC(int memoriaRam, String processador, int tela, System placaVideoDedicada, String capacidadeArmazenamento) {
+        this.memoriaRam = memoriaRam;
+        this.processador = processador;
+        this.tela = tela;
+        this.placaVideoDedicada = placaVideoDedicada;
+        this.capacidadeArmazenamento = capacidadeArmazenamento;
+    }
+}
+
+
+#### M2S03 Hierarquia
+
+public class Caixa extends Funcionario{
+
+    public Caixa(){
+
+    }
+    public void registrar(Produto produto){
+
+    }
+    public void cobrar(double valor){
+
+    }
+}
+
+
+package M2S03exercicio03Hierarquia;
+
+import java.util.List;
+
+public class Cliente extends Pessoa {
+
+    //Metodos
+
+    public Cliente(){
+
+    }
+    public void comprar(List<Produto> produtos){
+
+    }
+    public void pagar(double valor){
+
+    }
+}
+
+
+
+public class Fiscal extends Funcionario{
+
+    public Fiscal() {
+
+    }
+
+    public void fiscalizar() {
+
+    }
+
+    public void autenticar(String senha) {
+
+    }
+
+    @Override
+    public double calcularSalario(int diasTrabalhados) {
+        double salarioCalculado;
+
+        salarioCalculado = super.calcularSalario(diasTrabalhados) * 1.5;
+        return Math.round(salarioCalculado);
+    }
+}
+
+
+public class Funcionario extends Pessoa {
+
+    private static final double salario = 2_000.0;
+    //private double salario = 2000.0;
+
+
+
+    int diasTrabalhados;
+
+    // Métodos
+    public Funcionario(){
+
+    }
+    public double calcularSalario(int diasTrabalhados){
+        double salarioCalculado;
+        salarioCalculado = (this.salario/30)* diasTrabalhados;
+        return Math.round(salarioCalculado);
+    }
+
+}
+
+
+public class Gerente extends Funcionario {
+
+    public Gerente(){
+
+    }
+
+    //Método
+
+    public void calcularBonus(int diasTrabalhados){
+        double bonusCalculado;
+        bonusCalculado = super.calcularSalario(diasTrabalhados)*0.2;
+        System.out.println("Bonus é de " + Math.round(bonusCalculado));
+
+    }
+
+    @Override
+    public double calcularSalario(int diasTrabalhados) {
+        double salarioCalculado;
+        salarioCalculado =  super.calcularSalario(diasTrabalhados)*4;
+        return Math.round(salarioCalculado);
+    }
+
+
+}
+
+
+public abstract class Pessoa {
+
+    private String nome;
+    private String cpf;
+
+    // fazer contrutor vazio get e sets
+
+    public Pessoa(){
+
+    }
+
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+}
+
+
+
+public class Produto {
+
+    private String descricao;
+    private double preco;
+
+    public Produto(){
+
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+}
+
+
+
+public class Teste {
+    public static void main(String[] args) {
+
+            Funcionario funcionario = new Funcionario();
+            funcionario.setNome("Fernando");
+            funcionario.setCpf("888.888.888-3");
+
+
+
+            System.out.println("Salário do Funcionário é " +
+                    funcionario.calcularSalario(30));
+
+            Fiscal fiscal = new Fiscal();
+            fiscal.setNome("Fernando fiscal");
+            fiscal.setCpf("888.888.888-3");
+
+
+
+            System.out.println("Salário do Fiscal é " +
+                    fiscal.calcularSalario(30));
+
+            Gerente gerente = new Gerente();
+            gerente.setNome("Fernando gerente");
+            gerente.setCpf("888.888.888-3");
+
+
+
+            System.out.println("Salário do Gerente é " +
+                    gerente.calcularSalario(30));
+            gerente.calcularBonus(30);
+
+        }
+    }
+
+
+
+
+
+
+#### M2S03 Imobiliaria
+
+public abstrat class Imovel {
+    //Argumentos
+
+    private String endereco;
+    private double preco;
+
+    public Imovel(String endereco, double preco) {
+        this.endereco = endereco;
+        this.preco = preco;
+    }
+
+    public Imovel() {
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+}
+
+
+public class Novo extends Imovel{
+
+    private double precoAdicional;
+
+    public Novo(double precoAdicional) {
+        this.precoAdicional = precoAdicional;
+    }
+
+    public Novo() {
+    }
+
+    @Override
+    public String toString() {
+        return "Novo{" +
+                "precoAdicional=" + precoAdicional +
+                '}';
+    }
+
+    public double getPrecoadicional() {
+        return precoAdicional;
+    }
+
+    public void setPrecoadicional(double precoAdicional) {
+        this.precoAdicional = precoAdicional;
+    }
+}
+
+
+package M2S03exercicio02Imobiliária;
+
+public class Velho extends Imovel{
+
+    private double precoDesconto;
+
+    public Velho(double precoDesconto) {
+        this.precoDesconto = precoDesconto;
+    }
+
+    public Velho() {
+    }
+
+
+    public double getPrecoDesconto() {
+        return precoDesconto;
+    }
+
+    public void setPrecoDesconto(double precoDesconto) {
+        this.precoDesconto = precoDesconto;
+    }
+
+    @Override
+    public String toString() {
+        return "Velho{" +
+                "precoDesconto=" + precoDesconto +
+                '}';
+    }
+}
+
+
+#### M2S03Contribuinte
+
+//Os dados de pessoa jurídica
+// são nome, renda anual e número de funcionários.
+
+//Pessoa jurídica: pessoas jurídicas pagam 16% de imposto. Porém, se a empresa possuir mais de
+// 10 funcionários, ela paga 14% de imposto. Exemplo: uma empresa cuja renda foi 400000.00 e
+// possui 25 funcionários, o imposto fica: 400000 * 14% = 56000.00
+
+public class PessoaJuridica extends Contribuinte {
+
+    private int numeroFuncionarios;
+
+    public PessoaJuridica(String nome, double rendaAnual, int numeroFuncionarios) {
+        super(nome, rendaAnual);
+        this.numeroFuncionarios = numeroFuncionarios;
+    }
+
+    public PessoaJuridica(){
+
+    }
+
+
+    @Override
+    public double calcularImposto() {
+        double imposto;
+        if(getNumeroFuncionarios()>10){
+            imposto = getRendaAnual()*0.14;
+        }else{
+            imposto = getRendaAnual()*0.16;
+        }
+        return imposto;
+    }
+
+
+    public int getNumeroFuncionarios() {
+        return numeroFuncionarios;
+    }
+
+    public void setNumeroFuncionarios(int numeroFuncionarios) {
+        this.numeroFuncionarios = numeroFuncionarios;
+    }
+}
+
+
+
+import java.util.Scanner;
+
+public class ImpostoMain {
+    public static void main(String[] args) {
+
+        double valorImpostoFisica;
+        double valorImpostoJuridica;
+
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Calculo de Impostos");
+        System.out.println("<<<<<<<<<>>>>>>>>>>");
+
+        System.out.println("Para quantas pessoas deseja calcular o imposto?");
+        int npessoas = scanner.nextInt();
+
+        for (int i = 0; i < npessoas; i++) {
+
+        System.out.println("Digite 1 para pessoa Física ou 2 para pessoa Juridica:");
+        int escolhapessoa = scanner.nextInt();
+
+            if (escolhapessoa == 1) {
+                System.out.println("Digite o nome:");
+                String nome = scanner.next();
+                System.out.println("Digite a renda anual");
+                double rendaAnual = scanner.nextDouble();
+                System.out.println("Digite o valor com gastos em saúde se possuir:");
+                double gastoSaude = scanner.nextDouble();
+                PessoaFisica pessoaFisica = new PessoaFisica(nome, rendaAnual, gastoSaude);
+                valorImpostoFisica = pessoaFisica.calcularImposto();
+                System.out.println("O Valor do imposto é de: " );
+                System.out.println(Math.round(valorImpostoFisica));
+
+            }else if (escolhapessoa ==2){
+                System.out.println("Digite o nome:");
+                String nome = scanner.next();
+                System.out.println("Digite a renda anual");
+                double rendaAnual = scanner.nextDouble();
+                System.out.println("Digite o numero de funcionários:");
+                int numeroFuncionarios = scanner.nextInt();
+                PessoaJuridica pessoaJuridica = new PessoaJuridica(nome,rendaAnual,numeroFuncionarios);
+                valorImpostoJuridica = pessoaJuridica.calcularImposto();
+                System.out.println("O Valor do imposto é de: ");
+                System.out.println(Math.round(valorImpostoJuridica));
+
+            }else {
+                System.out.println("Opção inválida");
+            }
+
+
+        }
+    }
+
+}
+
+
+//Os dados de pessoa física são: nome, renda anual e gastos com saúde.
+
+//Pessoa física: pessoas cuja renda foi abaixo de 20000.00 pagam 15% de imposto.
+
+// Pessoas com renda de 20000.00 em diante pagam 25% de imposto.
+
+// Se a pessoa teve gastos com saúde, 50% destes gastos são abatidos no imposto.
+// Exemplo: uma pessoa cuja renda foi 50000.00 e teve 2000.00 em gastos com saúde,
+// o imposto fica: (50000 * 25%) - (2000 * 50%) = 11500.00
+
+public class PessoaFisica extends Contribuinte {
+
+    private double gastoSaude;
+
+    public PessoaFisica(double gastoSaude) {
+        this.gastoSaude = gastoSaude;
+    }
+
+    public PessoaFisica(String nome, double rendaAnual, double gastoSaude) {
+        super(nome, rendaAnual);
+        this.gastoSaude = gastoSaude;
+    }
+
+    public PessoaFisica(){
+
+    }
+
+    @Override
+    public double calcularImposto() {
+        double imposto;
+        if ( getRendaAnual() > 20000 ){
+            imposto = getRendaAnual()*0.25;
+        }else {
+            imposto = getRendaAnual()*0.15;
+        }
+        if( getGastoSaude() > 0){
+            imposto -= getGastoSaude() *  0.5;
+        }
+        if(imposto<0){
+            return 0.0;
+
+        }else {
+
+        }
+        return imposto;
+    }
+
+
+    public double getGastoSaude() {
+        return gastoSaude;
+    }
+
+    public void setGastoSaude(double gastoSaude) {
+        this.gastoSaude = gastoSaude;
+    }
+}
+
+
+
+//Os dados de pessoa jurídica
+// são nome, renda anual e número de funcionários.
+
+//Pessoa jurídica: pessoas jurídicas pagam 16% de imposto. Porém, se a empresa possuir mais de
+// 10 funcionários, ela paga 14% de imposto. Exemplo: uma empresa cuja renda foi 400000.00 e
+// possui 25 funcionários, o imposto fica: 400000 * 14% = 56000.00
+
+public class PessoaJuridica extends Contribuinte {
+
+    private int numeroFuncionarios;
+
+    public PessoaJuridica(String nome, double rendaAnual, int numeroFuncionarios) {
+        super(nome, rendaAnual);
+        this.numeroFuncionarios = numeroFuncionarios;
+    }
+
+    public PessoaJuridica(){
+
+    }
+
+
+    @Override
+    public double calcularImposto() {
+        double imposto;
+        if(getNumeroFuncionarios()>10){
+            imposto = getRendaAnual()*0.14;
+        }else{
+            imposto = getRendaAnual()*0.16;
+        }
+        return imposto;
+    }
+
+
+    public int getNumeroFuncionarios() {
+        return numeroFuncionarios;
+    }
+
+    public void setNumeroFuncionarios(int numeroFuncionarios) {
+        this.numeroFuncionarios = numeroFuncionarios;
+    }
+}
+
+
+
+#### Ex 06 M02 Jogador
+
+//Crie a classe Jogador descrita no ?diagrama? abaixo:
+//
+//a) Cadastrar/Instanciar pelo menos um time completo 11 jogadores.
+//
+//b) Criar um método que verifica a condição de jogo, ou seja, um método booleano que retornará
+// true se o jogador está apto a jogar e false se o jogador está suspenso.
+// Note que um jogador está suspenso pelo 3 cartão amarelo ou quando recebe uma punição
+// cartão vermelho ou em uma decisão do tribunal.
+//
+//c) Em uma outra classe, crie o método main, o qual cadastra os jogadores e ao final imprimirá a
+// lista do ?plantel? juntamente com a informação de quem está apto a jogar, conforme a figura abaixo.
+
+
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
+public class Jogador {
+        private int id;
+        private int numero;
+        private int qualidade;
+        private int cartoes;
+        private boolean suspenso;
+        private String nome;
+        private String apelido;
+        private String condicao;
+        private String posicao;
+        private LocalDate dataNascimento;
+        
+
+    @Override
+    public String toString() {
+        return posicao + " : " +
+                 id + " - " +
+                 nome +
+                 " (" +apelido + ") - " +
+                dataNascimento + " " +
+                "Condição: " + condicao+ "\n";
+    }
+
+    public Jogador(int id, String nome, String apelido, String condicao, String posicao, LocalDate dataNascimento) {
+        this.id = id;
+        this.nome = nome;
+        this.apelido = apelido;
+        this.condicao = condicao;
+        this.posicao = posicao;
+        this.dataNascimento = dataNascimento;
+    }
+
+    public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public int getNumero() {
+            return numero;
+        }
+
+        public void setNumero(int numero) {
+            this.numero = numero;
+        }
+
+        public int getQualidade() {
+            return qualidade;
+        }
+
+        public void setQualidade(int qualidade) {
+            this.qualidade = qualidade;
+        }
+
+        public int getCartoes() {
+            return cartoes;
+        }
+
+        public void setCartoes(int cartoes) {
+            this.cartoes = cartoes;
+        }
+
+        public boolean isSuspenso() {
+            return suspenso;
+        }
+
+        public void setSuspenso(boolean suspenso) {
+            this.suspenso = suspenso;
+        }
+
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        public String getApelido() {
+            return apelido;
+        }
+
+        public void setApelido(String apelido) {
+            this.apelido = apelido;
+        }
+
+        public String getCondicao() {
+            return condicao;
+        }
+
+        public void setCondicao(String condicao) {
+            this.condicao = condicao;
+        }
+
+        public LocalDate  getDataNascimento() {
+            return dataNascimento;
+        }
+
+        public void setDataNascimento(LocalDate  dataNascimento) {
+            this.dataNascimento = dataNascimento;
+        }
+
+        public String getPosicao() {
+            return posicao;
+        }
+
+        public void setPosicao(String posicao) {
+            this.posicao = posicao;
+        }
+
+        public boolean verificarCondicaoJogador() {
+            if(this.condicao.equals("apto")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class JogadorMain {
+    public static void main(String[] args)  {
+
+        List<Jogador> jogadores = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        int opcaoUsuario = 0;
+
+
+        do{
+            System.out.println("1 - Cadastrar jogador\n2 - Verificar escalação");
+            opcaoUsuario = scanner.nextInt();
+
+            switch(opcaoUsuario) {
+
+                case 1:
+                    for(int i = 0; i < 2; i++) {
+                        int idjogador = i+1;
+                        System.out.println("Informe o nome do jogador:");
+                        String nomeJogador = scanner.next();
+                        System.out.println("Informe o apelido do jogador:");
+                        String apelidoJogador = scanner.next();
+                        System.out.println("Informe a condição do jogador (apto ou não):");
+                        String condicaoJogador = scanner.next();
+                        System.out.println("Informe a posição do jogador:");
+                        String posicaoJogador = scanner.next();
+                        System.out.println("Informe a data de nascimento do jogador no formado dd/mm/aaaa:");
+                        String dtNascimento = scanner.next();
+                        LocalDate dataNascimento = parseLocalDate(dtNascimento);
+
+
+
+                    Jogador jogador =
+                                new Jogador(idjogador, nomeJogador, apelidoJogador, condicaoJogador,
+                                        posicaoJogador, dataNascimento);
+                        jogadores.add(jogador);
+                    }
+                    break;
+                case 2:
+                    System.out.println(jogadores.toString()
+                            .replace("[","")
+                            .replace("]",""));
+                    break;
+            }
+        }while(opcaoUsuario != 4);
+        
+
+
+
+
+
+
+    }
+
+    public static LocalDate parseLocalDate(String data) {
+        String[] arrayData = data.split("/");
+        int [] arrayDataInt = new int[3];
+        for(int i = 0; i < arrayData.length; i++) {
+            arrayDataInt[i] = Integer.parseInt(arrayData[i]);
+        }
+        return LocalDate.of(arrayDataInt[2],arrayDataInt[1],arrayDataInt[0]);
+    }
+}
+
+
+
+#### Data para transformar String p/ LocalDate
+
+import java.time.LocalDate;
+
+public class TesteData1 {
+    public static void main(String[] args) {
+
+     
+
+        System.out.println(parseLocalDate("28/12/1966"));
+        # "28/12/1966" é a string a ser transformada em LocalDate
+
+
+    }
+
+    public static LocalDate parseLocalDate(String data) {
+        String[] arrayData = data.split("/");
+        int [] arrayDataInt = new int[3];
+        for(int i = 0; i < arrayData.length; i++) {
+            arrayDataInt[i] = Integer.parseInt(arrayData[i]);
+        }
+
+        return LocalDate.of(arrayDataInt[2],arrayDataInt[1],arrayDataInt[0]);
+    }
+}
+
+
+#### Data criando uma classe para scanner jogador
+
+public class Pessoa {
+
+    public static LocalDate parseLocalDate(String data) {
+        String[] arrayData = data.split("/");
+        int [] arrayDataInt = new int[3];
+        for(int i = 0; i < arrayData.length; i++) {
+            arrayDataInt[i] = Integer.parseInt(arrayData[i]);
+        }
+
+        return LocalDate.of(arrayDataInt[2],arrayDataInt[1],arrayDataInt[0]);
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String dataNascimento = scanner.next();
+        LocalDate data = parseLocalDate(dataNascimento);
+
+        System.out.println(data);
+    }
+}
+
+#### System.exit(0); parar método
+
+#### carro acelerando velox max ex 2 mod 2 sem 2
+
+package m2S02exercicio02;
+//Baseado no exercício anterior, agora será necessário definição de velocidade máxima como atributo da classe.
+// Sendo então necessário criar os métodos get e set para registrar e recuperar a velocidade máxima atingida e
+// também os métodos para alterar a velocidade do carro, sendo :
+// acelerar(double speed), frear(double speed).
+// Através do método main da classe Main crie a instância dos objetos com as mesmas características do
+// exercício anterior e realize uma sequência de aceleração e frenagem com cada um dos objetos:
+
+//objeto id = 1 , acelerar(60.0) , acelerar(25.5) , frear(70.0);
+//objeto id = 2 , acelerar(10.0) , acelerar(65.5) , frear(50.5);
+//objeto id = 3 , acelerar(50.0) , acelerar(5.5) , frear(7.0);
+//objeto id = 4 , acelerar(120.0) , frear(25.5) , frear(70.7);
+//objeto id = 5 , acelerar(160.0) , acelerar (43.0) , frear(15.0);
+//
+//Por fim mostrar no console as informações de cada objeto.
+public class Carro {
+
+        //Atributos
+
+        private int id = 0;
+        private String modelo;
+        private String cor;
+        private double preco;
+        private double velocidade = 0.0;
+
+        private double velocidadeMaxima = 0.0;
+
+
+        //Metódos
+
+
+        public void setVelocidadeMaxima(double velocidadeMaxima) {
+                this.velocidadeMaxima = velocidadeMaxima;
+        }
+
+        public  double getVelocidadeMaxima(){
+                return velocidadeMaxima;
+        }
+
+        public void acelerar(double velocidade){
+                this.velocidade += velocidade;
+                if (getVelocidadeMaxima() < getVelocidade()){
+                        this.velocidadeMaxima = getVelocidade();
+                }
+        }
+        public void frear (double velocidade){
+                this.velocidade -= velocidade;
+        }
+
+
+        public Carro(int id, String modelo, String cor, double preco, double velocidade, double velocidadeMaxima
+        ) {
+                this.id = id;
+                this.modelo = modelo;
+                this.cor = cor;
+                this.preco = preco;
+                this.velocidade = 0.0;
+                this.velocidadeMaxima = 0.0;
+        }
+
+        @Override
+        public String toString() {
+                return "\n Carro{" +
+                        "id=" + id +
+                        ", modelo='" + modelo + '\'' +
+                        ", cor='" + cor + '\'' +
+                        ", preco=" + preco +
+                        ", velocidade=" + velocidade +
+                        ", velocidadeMaxima=" + velocidadeMaxima +
+                        "\n"+
+                        '}';
+        }
+
+        public int getId() {
+                return id;
+        }
+
+        public String getModelo() {
+                return modelo;
+        }
+
+        public String getCor() {
+                return cor;
+        }
+
+
+        public double getPreco() {
+                return preco;
+        }
+
+        public void setPreco(double preco) {
+                this.preco = preco;
+        }
+
+        public double getVelocidade() {
+                return velocidade;
+        }
+
+}
+
+
+package m2S02exercicio02;
+
+//// Através do método main da classe Main crie a instância dos objetos com as mesmas características do
+//// exercício anterior e realize uma sequência de aceleração e frenagem com cada um dos objetos:
+
+//objeto id = 1 , acelerar(60.0) , acelerar(25.5) , frear(70.0);
+//objeto id = 2 , acelerar(10.0) , acelerar(65.5) , frear(50.5);
+//objeto id = 3 , acelerar(50.0) , acelerar(5.5) , frear(7.0);
+//objeto id = 4 , acelerar(120.0) , frear(25.5) , frear(70.7);
+//objeto id = 5 , acelerar(160.0) , acelerar (43.0) , frear(15.0);
+
+import m2S02exercicio01.Carro;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class CarroVelocidadeMain {
+    public  static  List<m2S02exercicio02.Carro> carros = new ArrayList<>();
+
+    public static void main(String[] args) {
+
+        List<m2S02exercicio02.Carro> carros = new ArrayList<>();
+        // criando carros exer semana 2 fazer utilizando metodos (funções)
+
+        m2S02exercicio02.Carro carro = new m2S02exercicio02.Carro( 1, "Fusca", "Preto",
+                12456.00, 0.0,0.00);
+
+        m2S02exercicio02.Carro carro2 = new m2S02exercicio02.Carro( 2, "Corsa", "Azul",
+                5678.00, 0.0,0.00);
+
+        m2S02exercicio02.Carro carro3 = new m2S02exercicio02.Carro( 3, "Celta", "Prata",
+                18900.00, 0.0,0.00);
+
+        m2S02exercicio02.Carro carro4 = new m2S02exercicio02.Carro( 4, "Gol", "Branco",
+                45190.00, 0.0,0.00);
+
+        m2S02exercicio02.Carro carro5 = new m2S02exercicio02.Carro( 4, "Gol", "Branco",
+                45190.00, 0.0,0.00 );
+
+        carros.add(carro);
+        carros.add(carro2);
+        carros.add(carro3);
+        carros.add(carro4);
+        carros.add(carro5);
+
+        carro.acelerar(60);
+        carro.acelerar(25);
+        carro.frear(70);
+
+        carro2.acelerar(10);
+        carro2.acelerar(65.5);
+        carro2.frear(50.5);
+
+        carro3.acelerar(50);
+        carro3.acelerar(5.5);
+        carro3.frear(7);
+
+        carro4.acelerar(120);
+        carro4.frear(25.5);
+        carro4.frear(70.7);
+
+        carro5.acelerar(160);
+        carro5.acelerar(43);
+        carro5.frear(15);
+
+
+
+        System.out.println(carros.toString().replace(",","")
+                .replace("[","")
+                .replace("]","")
+                .replace("}","")
+                .replace("{",""));
+
+    }
+}
+
+
+#### Loja de carro ex 3 mod 2 sem 2
+
+package m2S02exercicio03;
+
+
+
+public class Carro {
+
+    //Atributos
+
+    private int id = 0;
+    private String modelo;
+    private String cor;
+    private double preco;
+    private double velocidade = 0.0;
+
+    //Metódos
+
+
+    public Carro(int id, String modelo, String cor, double preco, double velocidade) {
+        this.id = id;
+        this.modelo = modelo;
+        this.cor = cor;
+        this.preco = preco;
+        this.velocidade = 0.0;
+    }
+
+    @Override
+    public String toString() {
+        return "Carro " +
+                "id = " + id +"\n"+
+                "modelo = " + modelo + '\n' +
+                "cor = " + cor + '\n' +
+                "preco = R$" + preco + '\n'+
+                "velocidade = " + velocidade + "Km/h\n\n";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public double getVelocidade() {
+        return velocidade;
+    }
+
+}
+
+
+
+package m2S02exercicio03;
+
+//Estoque da loja de Carros
+//
+//Utilizando os conceitos já aprendidos faça um programa que receba as informações das características do objeto
+// carro pelo usuário, gerando apenas apenas de forma automática as informações de id e velocidade, deixando
+// ao usuário um Menu disponível para :
+//
+//1 - Incluir novo carro ao estoque (método chamado comprarCarro(Carro carro) );
+//2 - Consultar carros em estoque (método chamado listarEstoque() );
+//3 - Remover um carro do estoque (método chamado VenderCarro(Carro carro) );
+//4 - Encerrar Programa;
+//
+//Dica: Sempre que um carro for comprado um novo objeto carro será instanciado e adicionado a lista de carros.
+// Utilize a classe Carro já existente para a realização deste exercício.
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class LojaDeCarrosMain {
+    private static int escolhaUsuario;
+    private static Scanner scanner = new Scanner(System.in);
+
+    private static List<Carro> carros = new ArrayList<>();
+
+    private static int id;
+    private static int velocidade = 0;
+
+    private static int venda;
+
+    public static void main(String[] args) {
+
+        exibirMenu();
+        escolhaDoUsuario();
+    }
+
+    private static void escolhaDoUsuario() {
+        Scanner scanner = new Scanner(System.in);
+        escolhaUsuario = scanner.nextInt();
+
+        do{
+
+            switch (escolhaUsuario){
+
+                case 1:
+                    comprarCarro();
+                    break;
+
+                case 2:
+                    listarEstoque();
+                    break;
+
+                case 3:
+                    venderCarro();
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!\n");
+                    exibirMenu();
+                    escolhaUsuario = scanner.nextInt();
+
+
+            }
+        }while (!(escolhaUsuario==4));
+    }
+
+    private static void venderCarro() {
+
+        do {
+        System.out.println("Informe o Id do Carro que você quer vender: ");
+        venda = scanner.nextInt();
+
+            if (venda > carros.size()) {
+                System.out.println("Digite um id válido.");
+            }
+        }while (!(venda<=carros.size()));
+
+        System.out.println(carros.get(venda));
+        System.out.println("Confirma venda, sim ou não:");
+        String confirma = scanner.next();
+        if(confirma.equals("sim")){
+            System.out.println("Venda Confirmada");
+        }
+        carros.remove(carros.get(venda));
+        exibirMenu();
+        escolhaUsuario = scanner.nextInt();
+
+    }
+
+    private static void listarEstoque() {
+
+        if(carros.size()==0){
+            System.out.println("Não temos carros em estoque.");
+        }
+        System.out.println(carros.toString().replace(",","").replace("[","").replace("]",""));
+        exibirMenu();
+        escolhaUsuario = scanner.nextInt();
+
+    }
+
+    private static void comprarCarro() {
+        id=carros.size();
+        System.out.println("Qual o modelo do carro?");
+        String modelo = scanner.next();
+        System.out.println("Qual a cor do carro?");
+        String cor = scanner.next();
+        System.out.println("Qual o preço do carro");
+        double preco = scanner.nextDouble();
+        velocidade = 0;
+        Carro carrosInstanciados = new Carro(id, modelo, cor, preco, velocidade);
+        carros.add(carrosInstanciados);
+
+        exibirMenu();
+        escolhaUsuario = scanner.nextInt();
+
+    }
+
+    private static void exibirMenu() {
+
+        System.out.println("Bem vindo a Loja de Carros, escolha uma opção:\n" +
+                "1 - Incluir novo carro ao estoque\n" +
+                "2 - Consultar carros em esque\n" +
+                "3 - Remover um carro do estoque\n" +
+                "4 - Encerrar Programa");
+    }
+}
+
+
+#### motor acelerando
+
+package exercicio01M2S02;
+
+// As definições da classe motor são:(Tem Criar classe Motor com a primeira letra maiúscula)
+
+//atributos : temperatura, velocidade, tensão aplicada.
+
+//métodos : alterar a velocidade, ler a temperatura.(como fazer)
+
+public class PrincipalMain {
+
+    public static void main(String[] args) {
+
+
+
+    }
+}
+
+
+package exercicio01M2S02;
+
+// As definições da classe motor são:(Tem Criar classe Motor com a primeira letra maiúscula)
+
+//atributos : temperatura, velocidade, tensão aplicada.
+
+//métodos : alterar a velocidade, ler a temperatura.(como fazer)
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Motor {
+
+    //Atributos da classe
+    int id;
+    double temperatura;
+    double velocidade;
+    int tensaoAplicada;
+
+    // Construtor da class
+
+    public Motor(int id) {
+        this.id = id;
+        this.temperatura = 0.0;
+        this.velocidade = 0.0;
+        tensaoAplicada = 0;
+    }
+
+
+    // Métodos da classe
+
+    public void lerTemperatura(){
+        System.out.println("Temperatura é " + this.temperatura);
+    }
+
+    public void alterarVelocidade(int vlc){
+        this.velocidade = this.velocidade + vlc;
+    }
+
+    // Testando Classe
+
+    public static void main(String[] args) {
+//        Motor motor1 = new Motor(1);
+//        motor1.velocidade=10.0;
+//        motor1.temperatura= 45.0;
+//        motor1.tensaoAplicada =70;
+//        System.out.println(motor1);
+//
+//        Motor motor2 = new Motor(2);
+//        System.out.println(motor2.toString());
+            Motor motor = new Motor(1);
+            motor.velocidade=10.0;
+            motor.temperatura= 45.0;
+            motor.tensaoAplicada =70;
+            System.out.println(motor.toString());
+
+        List<Motor> motores = new ArrayList<>();
+        motores.add(motor);
+
+        motor.alterarVelocidade(10);
+        System.out.println(motor.toString());
+
+        motor.alterarVelocidade(-10);
+        System.out.println(motor.toString());
+
+    }
+
+    @Override
+    public String toString() {
+        return "Motor{" +
+                "id=" + id +
+                ", temperatura=" + temperatura +
+                ", velocidade=" + velocidade +
+                ", tensaoAplicada=" + tensaoAplicada +
+                '}';
+    }
+}
+
+
+#### exemplo de adcionar, consultar, remover encerrar motores de objetos
+
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    Pessoa pessoa1 = new Pessoa("André","102");
+    Pessoa pessoa2 = new Pessoa("Marzeu", "852");
+    List<Pessoa> pessoas = new ArrayList<>();
+
+    pessoas.add(pessoa1);
+    pessoas.add(pessoa2);
+
+    while(true) {
+        System.out.println("1 - cadastrar pessoa\n2 - Consultar pessoas\n3 - Remover\n4 - Encerrar");
+        int opcaoUsuario = scanner.nextInt();
+
+        switch(opcaoUsuario) {
+            case 1:
+                System.out.println("Informe o nome da pessoa:");
+                String nome = scanner.next();
+                System.out.println("Informe o cpf da pessoa:");
+                String cpf = scanner.next();
+                Pessoa pessoaInstanciada = new Pessoa(nome, cpf);
+                pessoas.add(pessoaInstanciada);
+                break;
+            case 2:
+                pessoas.forEach(pessoa -> {
+                    System.out.println(pessoa);
+                });
+                break;
+            case 3:
+                System.out.println("Informe o nome da pessoa que você deseja excluir:");
+                nome = scanner.next();
+                for(int i = 0; i < pessoas.size(); i++) {
+                    if(pessoas.get(i).getNome().equals(nome)) {
+                        pessoas.remove(pessoas.get(i));
+                    }
+                }
+                break;
+            case 4:
+                System.exit(0);
+        }
+
+    }
+}
+
+public class Pessoa {
+    private String nome;
+    private String cpf;
+
+    public Pessoa() {
+
+    }
+    public Pessoa(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Pessoa(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                '}';
+    }
+}
+
+#### transformar string em boolean
+
+
+
+#### jogadores
+
+public class Jogador {
+    private int id;
+    private int numero;
+    private int qualidade;
+    private int cartoes;
+    private boolean suspenso;
+    private String nome;
+    private String apelido;
+    private String condicao;
+    private String posicao;
+    private Date dataNascimento;
+
+    public Jogador(int numero, String nome, String apelido, String condicao, String posicao, Date dataNascimento) {
+        this.numero = numero;
+        this.nome = nome;
+        this.apelido = apelido;
+        this.condicao = condicao;
+        this.posicao = posicao;
+        this.dataNascimento = dataNascimento;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public int getQualidade() {
+        return qualidade;
+    }
+
+    public void setQualidade(int qualidade) {
+        this.qualidade = qualidade;
+    }
+
+    public int getCartoes() {
+        return cartoes;
+    }
+
+    public void setCartoes(int cartoes) {
+        this.cartoes = cartoes;
+    }
+
+    public boolean isSuspenso() {
+        return suspenso;
+    }
+
+    public void setSuspenso(boolean suspenso) {
+        this.suspenso = suspenso;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getApelido() {
+        return apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public String getCondicao() {
+        return condicao;
+    }
+
+    public void setCondicao(String condicao) {
+        this.condicao = condicao;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(String posicao) {
+        this.posicao = posicao;
+    }
+
+    public boolean verificarCondicaoJogador() {
+        if(this.condicao.equals("apto")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+public static void main(String[] args) throws ParseException {
+    List<Jogador> jogadores = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
+    int opcaoUsuario = 0;
+
+    do{
+        System.out.println("1 - Cadastrar jogador\n2 - Verificar condição dos jogadores");
+        opcaoUsuario = scanner.nextInt();
+
+        switch(opcaoUsuario) {
+
+            // String posicao, Date dataNascimento
+            case 1:
+                for(int i = 0; i < 1; i++) {
+                    System.out.println("Informe o nome do jogador:");
+                    String nomeJogador = scanner.next();
+                    System.out.println("Informe o apelido do jogador:");
+                    String apelidoJogador = scanner.next();
+                    System.out.println("Informe a condição do jogador:");
+                    String condicaoJogador = scanner.next();
+                    System.out.println("Informe o número do jogador:");
+                    int numeroJogador = scanner.nextInt();
+                    System.out.println("Informe a posição do jogador:");
+                    String posicaoJogador = scanner.next();
+                    System.out.println("Informe a data de nascimento do jogador no formado dd/mm/aaaa:");
+                    Date datanascimentoJogador = sdf.parse(scanner.next());
+
+                    Jogador jogador =
+                            new Jogador(numeroJogador,nomeJogador,apelidoJogador,condicaoJogador,
+                                    posicaoJogador,datanascimentoJogador);
+                    jogadores.add(jogador);
+                }
+                break;
+            case 2:
+                jogadores.forEach(jogador -> {
+                    if(jogador.verificarCondicaoJogador()) {
+                        System.out.println("O jogador " + jogador.getNome() + " está apto para jogar.");
+                    } else {
+                        System.out.println("O jogador " + jogador.getNome() + " não está apto para jogar.");
+                    }
+                });
+                break;
+        }
+    }while(opcaoUsuario != 4);
+}
+
+#### encapsulamento (public private)
+
+#### Classes e objetos sempre primeira letra maiúscula
+
+#### Pacotes (Packages) sempre letras minusculas
+
+#### programa digite fim para finalizar
+
+//Programa para adicionar nomes utilizando uma Collection ( ArrayList ):
+//
+//Receba os nomes até que FIM seja digitado;
+//Mostre a lista de nomes em ordem alfabética;
+
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+
+public class exercicio02 {
+    public static void main(String[] Args) {
+
+        List<String> nomes = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        String entradaUsuario = "";
+
+        while (!entradaUsuario.equals("fim")) {
+            System.out.println("Digite nome ou Fim para finalizar");
+            entradaUsuario = scanner.next();
+            nomes.add(entradaUsuario);
+
+
+        }
+
+        nomes.sort(Comparator.naturalOrder());
+        for (String nome : nomes) {
+            System.out.println(nome);
+
+        }
+    }
+
+}
+
+#### Classes e Objetos
+
+Objeto
+
+# //Faça um programa de agenda telefônica, com as classes Agenda e	Contato.
+# // O contato deverá possuir os seguintes atributos: nome e telefone.
+# // Antes de adicionar a lista deverá ser feita uma verificação se já existe um contato com o mesmo nome
+# // e telefone cadastrado na lista.
+# //
+# //Usar lista, repetição, equals e hashcode
+
+
+import java.util.Objects;
+
+public class Contato {
+    String nome;
+    String telefone;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Contato)) return false;
+        Contato contato = (Contato) o;
+        return Objects.equals(nome, contato.nome) && Objects.equals(telefone, contato.telefone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, telefone);
+    }
+
+    @Override
+    public String toString() {
+        return this.nome + ", " + this.telefone;
+    }
+}
+
+
+Casse Main
+
+//Faça um programa de agenda telefônica, com as classes Agenda e	Contato.
+// O contato deverá possuir os seguintes atributos: nome e telefone.
+// Antes de adicionar a lista deverá ser feita uma verificação se já existe um contato com o mesmo nome
+// e telefone cadastrado na lista.
+//
+//Usar lista, repetição, equals e hashcode
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class AgendaMain {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Contato> agenda = new ArrayList<>();
+        int opcaoSelecionada = 0;
+
+        do {
+            System.out.println("1 - Salvar contato\n2 - Listar Contatos\n 3 - Sair");
+            opcaoSelecionada = scanner.nextInt();
+
+            switch (opcaoSelecionada) {
+                case 1:
+                    Contato contato = new Contato();
+                    System.out.println("Informe o nome do contato");
+                    contato.nome = scanner.next();
+                    System.out.println("Informe o número do telefone");
+                    contato.telefone = scanner.next();
+                    if (agenda.isEmpty()) {
+                        agenda.add(contato);
+                    } else {
+                        for (int i = 0; i < agenda.size(); i++) {
+                            if (!agenda.get(i).equals(contato)) {
+                                agenda.add(contato);
+                                System.out.println("Contato salvo com sucesso!");
+
+                            }
+                        }
+                    }
+                break;
+                case 2:
+                    agenda.forEach(contatoAgenda -> {
+                        System.out.println(contatoAgenda.toString());
+                    });
+                    break;
+
+
+
+            }
+        } while (opcaoSelecionada != 3);
+    }
+}
+
+#### toString, equals e hashcode
+
+Classe Pessoa
+
+import java.util.Objects;
+
+public class Pessoa {
+    String nome;
+    Integer idade;
+
+    void classificar() {
+        if (idade > 50) {
+            System.out.println("quase idoso");
+    }else {
+            System.out.println("quase jovem");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "nome='" + nome + '\'' +
+                ", idade=" + idade +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pessoa pessoa = (Pessoa) o;
+        return nome.equals(pessoa.nome) && idade.equals(pessoa.idade);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, idade);
+    }
+}
+
+Main Pessoa1
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Pessoa1Main {
+    public static void main (String[] args) {
+
+        List<Pessoa> pessoas = new ArrayList<>();
+
+
+        Pessoa pessoa1 = new Pessoa();
+        pessoa1.nome = "Fer";
+        pessoa1.idade = 54;
+
+
+        System.out.println(pessoa1.nome);
+        pessoa1.classificar();
+
+        Pessoa pessoa2 = new Pessoa();
+        pessoa2.nome = "Nando";
+        pessoa2.idade = 45;
+
+
+        System.out.println(pessoa2.nome);
+        pessoa2.classificar();
+
+        Pessoa pessoa3 = new Pessoa();
+        pessoa3.nome = "Zé";
+        pessoa3.idade = 66;
+
+
+        System.out.println(pessoa3.nome);
+        pessoa3.classificar();
+
+        pessoas.add(pessoa1);
+        pessoas.add(pessoa2);
+        pessoas.add(pessoa3);
+
+        pessoas.forEach(pessoa -> {
+            if(pessoa.idade >=18) {
+                System.out.println(pessoa.nome + " é maior de idade");
+            }else{
+                System.out.println(pessoa.nome + " é menor de idade");
+            }
+        });
+    }
+}
+
+
+
+#### Classe começa sempre com letra maiuscula - java Class ExercicioM2S01
+
+#### Funções exemplo  completo
+
+// A empresa XPTO possui um sistema automatizado de atendimento aos clientes e fornecedores,
+// ao estilo WhatsApp. Os departamentos da empresa são divididos em 3 :
+
+//Depto Comercial:
+//Realizar Pedido;
+//Consultar Pedido;
+//Cancelar Pedido;
+
+//Depto Financeiro:
+//Realizar um Pagamento;
+//Consultar um Pagamento;
+//Solicitar Reembolso;
+
+//Depto RH:
+//Realizar uma candidatura;
+//Consultar vagas disponíveis;
+//Agendar entrevista;
+//
+//Faça um programa que imprima na tela ao usuário suas opções e após receber a opção escolhida pelo
+// usuário apresente as opções disponíveis para cada departamento ,
+//
+// em cada opção de menu deve existir
+// opção para voltar ao Menu anterior ou Sair do atendimento.
+
+//Após acessar a opção final apresente uma mensagem com a opção escolhida, Exemplo:
+//	"Você acessou a opção Depto Comercial - Consultar Pedido".
+//
+//Lembre-se de utilizar o que aprendemos sobre funções e modularização.
+
+import java.util.Scanner;
+
+public class M2S01exercicio02 {
+    public static int opcao;
+    public static int comercial;
+    public static Scanner scanner = new Scanner(System.in);
+    public static void main (String[] args){
+
+
+        mostrarMenu();
+
+
+        opcao = scanner.nextInt();
+        opcaoSelecionada(opcao);
+
+        while (! (opcao ==4)){
+
+            opcao = scanner.nextInt();
+            opcaoSelecionada(opcao);
+            //mostrarMenu(); //primeira coisa a fazer - ele vai ficar vermelho, colocar o mouse em cima e clicar
+            // na opção criar método.
+
+        }
+
+
+    }
+
+    private static void opcaoSelecionada(int opcao) {
+        switch (opcao){
+            case 1:
+                System.out.println("Depto Comercial:\n" +
+                        "-----------------------\n"+
+                        "1 - Realizar Pedido;\n" +
+                        "2 - Consultar Pedido;\n" +
+                        "3 - Cancelar Pedido;\n" +
+                        "4 - Voltar ao Menu Principal");
+                comercial = scanner.nextInt();
+                deptoComercial();
+
+                break;
+            case 2:
+                System.out.println("Depto Financeiro:\n" +
+                        "1 - Realizar um Pagamento;\n" +
+                        "2 - Consultar um Pagamento;\n" +
+                        "3 - Solicitar Reembolso;\n"+
+                        "4 - Voltar ao Menu Principal");
+                comercial = scanner.nextInt();
+                deptoFinanceiro();
+
+                break;
+            case 3:
+                System.out.println("Depto RH:\n" +
+                        "1 - Realizar uma candidatura;\n" +
+                        "2 - Consultar vagas disponíveis;\n" +
+                        "3 - Agendar entrevista;\n"+
+                        "4 - Voltar ao Menu Principal");
+                comercial = scanner.nextInt();
+                deptoRH();
+                break;
+            case 4:
+                System.out.println("Atendimento encerrado, agradecemos sua presença");
+                break;
+            default:
+                System.out.println("Opção inválida");
+                mostrarMenu();
+                break;
+        }
+
+    }
+
+    private static void deptoRH() {
+        switch (comercial){
+            case 1:
+                System.out.println("Você acessou a opção Depto RH - Realizar uma candidatura");
+                mostrarMenu();
+                break;
+            case 2:
+                System.out.println("Você acessou a opção Depto RH - Consultar vagas disponiveis");
+                mostrarMenu();
+                break;
+            case 3:
+                System.out.println("Você acessou a opção Depto RH - Agendar entrevista");
+                mostrarMenu();
+                break;
+            case 4:
+                mostrarMenu();
+                break;
+            default:
+                System.out.println("Opção invávlida");
+                mostrarMenu();
+                break;
+        }
+    }
+
+    private static void deptoFinanceiro() {
+        switch (comercial){
+            case 1:
+                System.out.println("Você acessou a opção Depto Financeiro - Realizar um pagamento");
+                mostrarMenu();
+                break;
+            case 2:
+                System.out.println("Você acessou a opção Depto Financeiro - Consultar um pagamento");
+                mostrarMenu();
+                break;
+            case 3:
+                System.out.println("Você acessou a opção Depto Financeiro - Solicitar reembolso");
+                mostrarMenu();
+                break;
+            case 4:
+                mostrarMenu();
+                break;
+            default:
+                System.out.println("Opção invávlida");
+                mostrarMenu();
+                break;
+        }
+    }
+
+    private static void deptoComercial() {
+        switch (comercial){
+            case 1:
+                System.out.println("Você acessou a opção Depto Comercial - Realizar Pedido");
+                mostrarMenu();
+                break;
+            case 2:
+                System.out.println("Você acessou a opção Depto Comercial - Consultar Pedido");
+                mostrarMenu();
+                break;
+            case 3:
+                System.out.println("Você acessou a opção Depto Comercial - Cancelar Pedido");
+                mostrarMenu();
+                break;
+            case 4:
+                mostrarMenu();
+                break;
+            default:
+                System.out.println("Opção invávlida");
+                mostrarMenu();
+                break;
+        }
+    }
+
+    private static void mostrarMenu() {
+        System.out.println(" ");
+        System.out.println("Escolha sua opção:");
+        System.out.println("---------------------");
+        System.out.println("1 - Depto Comercial");
+        System.out.println("2 - Depto Financeiro");
+        System.out.println("3 - Depto RH");
+        System.out.println("4 - Sair");
+    }
+
+
+}
+
+
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Exercicio03M02S01A02 {
+
+//    Solicite 3 notas de 0.0 a 10.0 , após a terceira nota apresente o resultado de aprovação ,
+//    para aprovação o aluno deve possuir média superior a 7.0 ;
+
+    public static Scanner entrada = new Scanner(System.in);
+    public static ArrayList<Double> notas = new ArrayList<>();
+
+    public static void main(String[] args) {
+
+        solicitarNotas();
+        calcularMedia(notas);
+
+    }
+
+    private static void calcularMedia(ArrayList<Double> notas) {
+        double media = 0.0;
+        for (double nota: notas ) {
+            media += nota;
+        }
+        media = media / 3;
+        System.out.println("Média calculada é " + media);
+        if ( media > 7){
+            System.out.println("Aprovado");
+        } else {
+            System.out.println("Reprovado");
+        }
+    }
+
+    private static void solicitarNotas() {
+        System.out.println("Digite as 3 notas de 0.0 a 10.0");
+        for ( int i = 0 ; i < 3 ; i++ ){
+            notas.add(entrada.nextDouble());
+        }
+    }
+
+}
+
+#### Funções
+
+public class exercicio02M02S01 {
+    public static void main (String[] args){
+
+//        Scanner scanner = new Scanner(System.in);
+//
+//        int opcaoCliente;
+
+        imprimeMesnsagemBoasVindas();
+        imprimeTexto("Texto escrito");
+
+        }
+
+        public static void imprimeMesnsagemBoasVindas() {
+            System.out.println("Seja bem vindo ao atendimento automático");
+        }
+        public static void imprimeTexto (String texto) {
+            System.out.println(texto);
+        }
+    }
+
+
+#### array list com Set
+
+// Escreva um programa de um biblioteca que apresentará o seguinte menu para o usuário:
+//
+//1 - cadastrar livro
+//2 - consultar livro
+//
+//Se a primeira opção for selecionada, o programa deverá solicitar que o usuário entre com o nome
+// do livro e adicionar ao Set de livros. Após isso, apresentar a mensagem ?Livro cadastrado com sucesso!?.
+//
+//Se a segunda opção for selecionada, o programa deverá solicitar que o usuário entre com o nome
+// do livro que deseja consultar e em seguida verificar se o livre existe no set. Caso exista,
+// deverá apresentar a mensagem ?Livro cadastrado no sistema?. Caso não exista, deverá apresentar a
+// mensagem ?Livro não cadastrado?.
+
+
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class exercicio04S04 {
+    public static void main (String[] args){
+
+        Set<String> livros = new HashSet<>();
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("1 - Cadastrar livro \n 2 - Consultar livro");
+        int consulta = scanner.nextInt();
+
+
+        switch (consulta) {
+            case 1:
+                System.out.println("Digite o nome do livro");
+                String nomeLivro = scanner.next();
+                livros.add(nomeLivro);
+                System.out.println("Livro cadastrado com sucesso");
+                System.out.println("1 - Cadastrar livro \n 2 - Consultar livro");
+                consulta = scanner.nextInt();
+                return;
+
+            case 2:
+                System.out.println("Digite o nome do livro");
+                String buscaLivro = scanner.next();
+                if (livros.contains(buscaLivro)) {
+                    System.out.println("Livro cadastrado no sistema");
+                } else {
+                    System.out.println("Livro não cadastrado no sistema");
+                    break;
+                }
+            }
+        while( consulta >= 3);
+
+        }
+
+    }
+
+
+
+#### numeros max min media array list
+
+// Escreva um programa que adiciona valores em um ArrayList até ser informado um número negativo.
+// Após sair do loop, o programa deverá exibir a média dos números inseridos na lista, o maior número
+// e o menor número.
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class exercicio05S04 {
+    public static void main(String[] args) {
+
+        ArrayList<Double> valores = new ArrayList<Double>();
+        Scanner scanner = new Scanner(System.in);
+        double numeroInfo = 0;
+
+        while (!(numeroInfo < 0)) {
+            System.out.println("Digite qualquer numero, para sair informe um numero negativo.");
+            numeroInfo = scanner.nextInt();
+            valores.add(numeroInfo);
+        }
+        double soma = 0;
+        for (int i = 0; i < valores.size(); i++) {
+            soma += valores.get(i);
+        }
+        System.out.println("A média dos numeros inseridos é: " + soma / valores.size());
+
+
+        double maxValor = 0;
+        double minValor = 0;
+
+        for (int i = 0; i <= valores.size() - 1; i++) {
+            if (valores.get(i) > maxValor) {
+                maxValor = valores.get(i);
+            }
+            System.out.println("O maior numero inserido é : " + maxValor);
+
+        for ( i = 0; i <= valores.size() -1; i++) {
+             if (valores.get(i) < minValor) {
+                    minValor = valores.get(i);
+             }
+
+            }System.out.println("O menor numero inserido é : " + minValor);
+        }
+    }
+}
+
+
+
+#### agenda com Map e do while
+
+// Escreva um programa que será um organizador de tarefas.
+// Deverá apresentar o seguinte menu para o usuário:
+//
+//1 - Cadastrar atividade
+//2 - Marcar como feito
+//
+//Para a primeira opção o programa deverá solicitar ao usuário que informe qual é a atividade e em seguida
+// o horário(String). Exemplo: ?Academia? ?12:00?
+
+//Para a segunda opção deverá solicitar o nome da atividade e caso ela exista no Map,
+// deverá remover a atividade.
+//
+// Caso não exista, deverá ser mostrado no console ?Atividade não cadastrada?
+//Deverá ser executado em loop até o número 0 ser digitado.
+
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class exercicio06S04 {
+    public static void main (String[] args){
+
+        Scanner scanner = new Scanner(System.in);
+        Map<String , String > agenda = new HashMap<>();
+        int entradaUsuario = -1;
+
+        do{
+            System.out.println("Escolha uma opção: \n1- Cadastrar atividade: \n2- Marcar como feito! \n0- Para sair -->");
+            entradaUsuario = scanner.nextInt();
+
+            switch (entradaUsuario){
+
+                case 1:
+                    System.out.println("Qual é a atividade");
+                    String atividade = scanner.next();
+                    System.out.println("Qual é o horário");
+                    String horario = scanner.next();
+                    agenda.put(atividade,horario);
+                    break;
+
+                case 2:
+                    System.out.println("Qual atividade deseja remover?");
+                    String remover = scanner.next();
+                    if(agenda.containsKey(remover)){
+                        agenda.remove(remover);
+                        System.out.println("Atividade removida com sucesso");
+                    }else{
+                        System.out.println("Atividade não cadastrada.");
+                    }
+                    break;
+            }
+        }while (entradaUsuario != 0);
+
+    }
+
+
+}
+
+
+#### array list com Map
+
+//Escreva um programa que fará a gestão do empréstimo de livros de uma biblioteca.
+// deverá apresentar o seguinte menu:
+//
+//1 - Cadastrar Livro
+//2 - Emprestar
+//3 - Sair
+//
+//Para cadastrar deverá ser informado o nome do livro e o valor da diária. Se já existir um
+// livro cadastrado com o mesmo nome,
+// deverá apresentar a mensagem ?livro já cadastrado no sistema.?
+//
+//Para emprestar deverá ser informado o nome do livro e a quantidade de dias.
+// Após isso deverá ser informado o valor total do aluguel. Se o livro for alugado por mais de 5 dias
+// deverá ser dado um desconto de 5% no valor total.
+//
+//E se a opção sair for selecionada, a execução do programa deverá ser encerrada e deverá ser
+// apresentado o total de empréstimos realizados.
+
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class exercicio11S04 {
+    public static void main (String[] args){
+
+        Scanner scanner = new Scanner(System.in);
+        Map<String,Double> listaLivros = new HashMap<>();
+        int entradaUsuario = 0;
+        do {
+            System.out.println("Escolha a opção: \n1-Cadastrar livro; \n2-Emprestar \n3-Sair");
+            entradaUsuario = scanner.nextInt();
+
+            switch (entradaUsuario) {
+                case 1:
+                    System.out.println("Nome do livro");
+                    String nomeLivro = scanner.next();
+                    if (listaLivros.containsKey(nomeLivro)){
+                        System.out.println("Este livro já está cadastrado");
+                    }else {
+                        System.out.println("Valor da diária: ");
+                        double valorDiaria = scanner.nextInt();
+                        listaLivros.put(nomeLivro, valorDiaria);
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("Nome do livro");
+                    nomeLivro = scanner.next();
+                    System.out.println("Quantidade de dias: ");
+                    int quantidadeDias = scanner.nextInt();
+
+                    listaLivros.forEach((nome,valor)->{
+                        if(nome.equals(nomeLivro) && (quantidadeDias > 5)) {
+                            System.out.println("O valor do aluguel é R$ " + ((valor * quantidadeDias)/1.05));
+                        }else {
+                            System.out.println("O valor do aluguel é R$ " + ((valor * quantidadeDias)));
+                        }
+
+
+                    });
+                    break;
+
+                case 3:
+                    break;
+            }
+
+        }while (entradaUsuario != 3) ;
+
+    }
+
+}
+
+
+#### criação e soma de arrayList, switch case, for
+
+// Escreva um programa que apresentará o seguinte menu para o usuário:
+//
+//1 - Adicionar nota
+//2 - calcular média
+//3 - encerrar
+//
+//Caso a primeira opção seja escolhida o programa deverá pedir para o usuário adicionar a nota,
+// adicionar em um array e retornar para o menu.
+//
+//Caso a segunda opção seja escolhida deverá ser apresentando o seguinte menu:
+//
+//1 - Média parcial (Só deverá ser executado se o array não for vazio. Caso seja vazio, deverá ser
+// apresentada a mensagem: ?não é possível calcular a média com o arquivo de notas vazio.?
+//
+//2 - Média completa (Só deverá ser calculado se todas as notas forem inseridas. Caso contrário,
+// deverá ser apresentada a mensagem: ?Complete o preenchimento das notas?
+//
+//Em ambos os casos, deverá ser retornado para o menu principal ao término da instrução.
+//
+//Caso a terceira opção seja inserida, o programa deverá ser encerrado.
+
+// 1 - montar menu - 1 -Adicionar nota 2 - Calcular média 3 - encerrar
+// opção um, usuario adiciona nota, nota vai para um array e usuario retorna menu
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class exercicio06 {
+    public static void main(String[] Args) {
+
+        Scanner scanner = new Scanner(System.in);
+        #Criação do ArrayList
+        ArrayList<Double> notas = new ArrayList<Double>();
+
+        System.out.println("Escolha uma opção: \n 1 - Adicionar nota \n 2 - Calcular média \n 3 - Encerrar");
+        int escolha = scanner.nextInt();
+
+        switch (escolha) {
+            case 1:
+                # Povoação do ArrayList
+                for (int i = 0; i <= 3; i++) {
+                    System.out.println("Digite Nota " + (i+1));
+                    Double valorNota = scanner.nextDouble();
+                    notas.add(valorNota);
+
+                }
+                System.out.println("Escolha uma opção: \n 1 - Adicionar nota \n 2 - Calcular média \n 3 - Encerrar");
+                escolha = scanner.nextInt();
+
+                switch (escolha) {
+                    case 2:
+                    # soma dos elementos do ArrayList
+                        double soma = 0;
+                        for (int i = 0 ; i < notas.size(); i++){
+                            soma += notas.get(i);
+                        }
+                        System.out.println("Sua média é: "+ soma/4);
+                        return;
+
+                    default:
+                        System.out.println("Programa encerrado");
+                        break;
+                }
+
+
+                    case 2:
+                        System.out.println("\n Primeiro Você tem que inserir sua nota.");
+                        break;
+
+
+
+                    case 3:
+                        System.out.println("Programa encerrado");
+                        return;
+        }
+
+    }
+
+}
+
+
+#### ordenar lista
+
+lista.sort(Comparator)
+
+#### while senha, começar o codigo da forma mais simples testar if depois colocar laço repetição, for ou while
+
+// Escreva um programa que repita a leitura de uma senha até que ela seja válida.
+// Para cada leitura de senha incorreta informada, escrever a mensagem "Senha Invalida".
+// Quando a senha for informada corretamente deve ser impressa a mensagem "Acesso Permitido"
+// e o algoritmo encerrado. Considere que a senha correta é o valor 2002.
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class exercicio01 {
+    public static void main(String[] args) {
+
+        String senha = "2002";
+        Boolean acesso = false;
+        Scanner scanner = new Scanner(System.in);
+
+        while (!acesso) {
+            System.out.println("Digite sua senha: ");
+            if (senha.equals(scanner.nextLine())) {
+                System.out.println("Acesso Permitido");
+            } else {
+                System.out.println("Senha Invalida");
+            }
+        }
+    }
+}
+
+
+
+#### List
+
+Alguns dos métodos que devem ser implementados por todas as subclasses de Collection:
+
+* add(Object e) – Adiciona um Objeto dentro da coleção.
+* addAll(Collection c) – Adiciona uma coleção de Objetos dentro da coleção.
+* contains(Object o) – Verifica se um Objeto está dentro da coleção.
+* clear() - Remove todos os Objetos da coleção. 
+* isEmpty() - Retorna um boolean informando se a coleção está vazia ou não.
+* remove(Object o) – Remove um Objeto da coleção.
+* size() - Retorna o tamanho da coleção.
+* toArray() - Converte uma coleção em um vetor.
+
+
+
+#### vetores
+
+import java.util.Scanner;
+
+public class exemplo02S04 {
+    public static void main (String[ ] args){
+
+        String[ ] nomes;
+        Scanner entrada = new Scanner(System.in);
+
+        System.out.println("Digite um número que será utilizado para criar o vetor");
+        nomes = new String[ entrada.nextInt()];
+
+        for(int indice = 0; indice < nomes.length ; indice++){
+            System.out.println("Digite um nome");
+            nomes[indice] = entrada.next();
+        }
+        for(String nome : nomes ){
+            System.out.println(nome);
+        }
+
+    }
+}
+
+
+#### laço for para fatorial
+
+import java.util.Scanner;
+
+public class exercicio05 {
+    public static void main (String[] Args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite um número inteiro: ");
+        int num = scanner.nextInt();
+        int fator = 0;
+
+        for (int i = num; i > -1; i--) {
+            System.out.println("Números: " + i);
+        }
+        System.out.println("------------");
+        int fat =1;
+
+        for (int i = num; i >1 ; i--){
+            fat=fat*i;
+        }
+        System.out.println("O valor de seu fatorial é: " + fat );
+    }
+}
+
+
+#### laço for para somatório
+
+import java.util.Scanner;
+
+public class exercicio04 {
+    public static void main (String[] argas){
+
+
+
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("Digite um número inteiro: ");
+        double num = scanner.nextInt();
+
+        for (double i= num ; i > -1 ; i -- ){
+            System.out.println("Números: "+ i);
+        }
+        System.out.println("------------");
+        System.out.println("O valor do somatório destes números é: " + ((num/2)*(num+1)));
+    }
+}
+
+
+#### while calcula e apresenta o resultado em forma de tabela
+
+public class exercicio03 {
+    public static void main(String[] args) {
+
+        int numero =10;
+        int contar = 1;
+        int square = 0;
+        int cube = 0;
+        System.out.println("| Number | Square | Cube |");
+
+        while (contar <= numero) {
+
+            if (contar >= -1) {
+                System.out.println("--------------------------");
+                System.out.println("|    "+contar+"       "+ (square=(contar*contar)) +"       "+(cube = (contar*contar*contar))+" |");
+            }
+
+            contar ++;
+        }
+
+    }
+}
+
+
+#### while patinhos
+
+import java.util.Scanner;
+
+public class exercicio02 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int contar = 0;
+        int numero = 0;
+
+        System.out.println("Quantos patinhos você quer ver?");
+        int patinhos = scanner.nextInt();
+        contar = patinhos;
+
+        do {
+            if(contar>1) {
+                System.out.println(contar + " patinhos foram passear\n" +
+                        "Além das montanhas\n" +
+                        "Para brincar\n" +
+                        "A mamãe gritou: Quá, quá, quá, quá? Mas só " + contar + " patinhos voltaram de lá.");
+            }else{
+                System.out.println(contar + " patinho foi passear\n" +
+                        "Além das montanhas\n" +
+                        "Para brincar\n" +
+                        "A mamãe gritou: Quá, quá, quá, quá? Mas só " + contar + " patinho voltou de lá.");
+            }
+
+            contar--;
+
+
+        }while (contar > 0) ;
+
+        }
+
+    }
+
+
+#### while pares e impares
+
+import java.util.Scanner;
+
+public class exercicio01 {
+    public static void main(String[] args) {
+
+        int numero =1;
+        int contar = 1;
+
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("Entre um numero inteiro maior que 1: ");
+        numero = scanner.nextInt();
+
+        while (contar <= numero) {
+
+            if (contar % 2 == 0) {
+                System.out.println("O valor " + contar + " é par");
+            } else {
+                System.out.println("O valor " + contar + " é impar");
+            }
+            contar ++;
+        }
+
+    }
+}
+
+
+#### array com for e frutas e qual deseja comprar
+
+import java.util.Scanner;
+
+public class exercicio08s3 {
+    public static void main (String[] args ){
+
+    Scanner scanner = new Scanner(System.in);
+    boolean naoPossuiFruta = true;
+
+    String [] frutas = {"Maçã", "Pêra", "Uva", "Goiaba", "Mamão", "Limão", "Laranja" , "Melão"};
+
+    System.out.println ("Qual fruta deseja comprar?");
+    String escolhaFruta = scanner.next();
+
+    for (int i = 0; i < frutas.length ; i++) {
+        if ( frutas[i].equals(escolhaFruta)) {
+            naoPossuiFruta = false;
+            System.out.println("Vendemos esta fruta aqui!");
+        }
+    }
+    if (naoPossuiFruta){
+        System.out.println("Infelizmente está em falta.");
+        }
+    }
+}
+
+
+#### do while maiores menores e media numeros digitados
+
+import java.util.Scanner;
+
+public class exercicio11s3 {
+    public static void main (String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int qtdadeNumeroDigitado = 0;
+        int maior = 0;
+        int menor = 0;
+        int len = 0;
+        int somatorioNumeroDigitado = 0;
+        double media = 0.0;
+        int numEntrada;
+
+        do {
+            System.out.println("Digete numeros reais aleatoriamente e para parar digite '0' :");
+            numEntrada = scanner.nextInt();
+
+            if (numEntrada != 0) {
+                qtdadeNumeroDigitado++;
+                somatorioNumeroDigitado += numEntrada;
+
+                if (numEntrada > maior) {
+                    maior = numEntrada;
+
+                }
+                if (numEntrada < menor) {
+                    menor = numEntrada;
+                }
+            }
+        }
+
+            while (numEntrada != 0) ;
+            media = somatorioNumeroDigitado / qtdadeNumeroDigitado;
+
+            System.out.println("Foram digitados :" + qtdadeNumeroDigitado + "" +
+                    "\n O somatório dos números digitados foi: " + somatorioNumeroDigitado +
+                    "\n O maior número digitado foi: " + maior +
+                    "\n O menor número digitado foi: " + menor +
+                    "\n A média foi: " + media);
+        }
+    }
+
+
+
+
+
+#### for bomba
+
+import java.util.Scanner;
+
+public class exercicio07s3 {
+    public static void main(String [] args ){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Em quanto tempo a bomba deve explodir ? ");
+        int bum = scanner.nextInt();
+        if (bum < 0){
+            System.out.println("Valor inválido.");
+        }else {
+
+            for (int i = (bum); i > -1; i--) {
+                System.out.println(i);
+
+            }
+            System.out.println("Bum!!!!!");
+        }
+    }
+}
+
+#### for media provas
+
+import java.util.Scanner;
+
+public class exercicio06s3 {
+
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            double notas[] = new double[4];
+            double somatorioNotas = 0;
+            double media;
+
+            for (int i = 0; i < notas.length; i++) {
+                System.out.println("Informe a " + (i + 1) + " ° nota:");
+                notas[i] = scanner.nextDouble();
+            }
+
+            for (int i = 0; i < notas.length; i++) {
+                somatorioNotas += notas[i];
+            }
+
+            media = somatorioNotas / notas.length;
+
+            if (media > 7) {
+                System.out.println("Aprovado por média.");
+            } else {
+                System.out.println("Infome a nota da recuperação:");
+                double notaRecuperacao = scanner.nextDouble();
+
+
+                if (notaRecuperacao >= 7) {
+                    System.out.println("Aprovado na recuperação.");
+                } else {
+                    System.out.println("Reprovado.");
+                }
+            }
+        }
+    }
+
+
+#### numeros pares com while
+
+public class exercicio04s3 {
+    public static void main(String[] args) {
+
+
+        int n=1;
+
+        while (n <= 100) {
+        if (n % 2 == 1) {
+                System.out.println(n);
+            }
+            n++;
+        }
+    }
+}
+
+#### numeros pares e impares com while
+
+import java.util.Scanner;
+
+public class exercicio03s3 {
+    public static void main(String[] args) {
+
+        int numero =1;
+        int contar = 1;
+
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("Entre um numero inteiro maior que 1: ");
+        numero = scanner.nextInt();
+
+        while (contar <= numero) {
+
+            if (contar % 2 == 0) {
+                System.out.println("O valor " + contar + " é par");
+            } else {
+                System.out.println("O valor " + contar + " é impar");
+            }
+            contar ++;
+        }
+
+    }
+}
+
+#### exemplo array
+
+import java.util.Scanner;
+
+public class exemploArray {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        String[] mes = new String[13];
+
+        mes[1] = "Janeiro";
+        mes[2] = "Fevereiro";
+        mes[3] = "Março";
+        mes[4] = "Abril";
+        mes[5] = "Maio";
+        mes[6] = "Junho";
+        mes[7] = "Julho";
+        mes[8] = "Agosto";
+        mes[9] = "Setembro";
+        mes[10] = "Outubro";
+        mes[11] = "Novembro";
+        mes[12] = "Dezembro";
+
+        System.out.println("Escolha um número referente a um mês do ano:");
+        int escolha = scanner.nextInt();
+
+        for (int i = 0; i < 12; i++){
+            if ((escolha) == i){
+                System.out.println(mes[i]);
+            }
+        }
+    }
+
+}
+
+
+
+#### exemplo calculadora while
+
+import java.util.Scanner;
+
+public class excalculadora {
+    public static void main(String[] args) {
+
+
+//    Utilizando a estrutura While, faça um programa que receba 2 números e o símbolo
+//    da operação desejada
+//    simulando então o funcionamento de uma calculadora.
+//    As operações necessárias serão ( * , / , + , - ).
+//    A ordem de como serão lidos os comandos do usuário será de sua preferência.
+//    A cada cálculo efetuado retorne ao usuário o resultado e solicite se o usuário
+//    deseja realizar um novo cálculo.
+
+
+        String opcaoMenu;
+        int opcaoCalculo;
+        double n1;
+        double n2;
+
+        Scanner entrada = new Scanner(System.in);
+
+        //Criando estrutura de opção para o usuário
+
+        System.out.println("--------------------------------------------");
+        System.out.println("Calculadora iniciada");
+        System.out.println("--------------------------------------------");
+        System.out.println("1 - novo calculo");
+        System.out.println("2 - encerrar programa");
+        System.out.println("--------------------------------------------");
+        opcaoMenu = entrada.next();
+
+        while (!opcaoMenu.equals("2")) {
+
+            System.out.println("digite o primeiro número");
+            System.out.println("--------------------------------------------");
+            n1 = entrada.nextDouble();
+            System.out.println("digite a operação desejada");
+            System.out.println("--------------------------------------------");
+            System.out.println("1 - Para (+) Adição");
+            System.out.println("2 - Para (-) Subtração");
+            System.out.println("3 - Para (*) Multiplicação");
+            System.out.println("4 - Para (/) Divisão");
+            opcaoCalculo = entrada.nextInt();
+            System.out.println("digite o segundo número");
+            System.out.println("--------------------------------------------");
+            n2 = entrada.nextDouble();
+
+            switch (opcaoCalculo) {
+                case 1 :
+                    System.out.println("--------------------------------------------");
+                    System.out.println("Resultado da operação (+) Adição " + n1 + " + " + n2 + " = " +(n1+n2));
+                    break;
+                case 2 :
+                    System.out.println("--------------------------------------------");
+                    System.out.println("Resultado da operação (-) Subtração " + n1 + " - " + n2 + " = " +(n1-n2));
+                    break;
+                case 3 :
+                    System.out.println("--------------------------------------------");
+                    System.out.println("Resultado da operação (*) Multiplicação " + n1 + " * " + n2 + " = " +(n1*n2));
+                    break;
+                case 4 :
+                    System.out.println("--------------------------------------------");
+                    System.out.println("Resultado da operação (/) Divisão " + n1 + " / " + n2 + " = " +(n1/n2));
+                    break;
+                default:
+                    break;
+            }
+
+            System.out.println("--------------------------------------------");
+            System.out.println("Selecione uma opção");
+            System.out.println("--------------------------------------------");
+            System.out.println("1 - novo calculo");
+            System.out.println("2 - encerrar programa");
+            System.out.println("--------------------------------------------");
+            opcaoMenu = entrada.next();
+
+        }
+    }
+}
+
+
+#### estrutura for
+
+public class estruturaFor {
+    public static void main (String[] args ){
+
+        for (int i = 1; i < 6; i++){
+            System.out.println(i);
+        }
+    }
+}
+
+#### switch case saldo banco
+
+package Exercicios;
+
+import java.util.Scanner;
+
+public class exercicio06s02 {
+    public static void main (String[] args ){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Qual é o seu saldo atual:");
+        double saldo = scanner.nextDouble();
+
+        System.out.println("Escolha uma opção: \n 1-saque \n 2-depósito \n 3-transferencia");
+        int movimento = scanner.nextInt();
+
+        switch (movimento) {
+            case 1:
+                System.out.println("Quanto você quer sacar?");
+                double saque = scanner.nextDouble();
+                System.out.println("Seu saldo atual é R$ " + (saldo - saque));
+                return;
+
+            case 2:
+                System.out.println("Quanto você quer depositar?");
+                double deposito = scanner.nextDouble();
+                System.out.println("Seu saldo atual é de R$ " + (saldo + deposito));
+                return;
+
+            case 3:
+                System.out.println("Transferência");
+                break;
+
+            default:
+                System.out.println("Opção inválida");
+                return;
+        }
+
+                System.out.println("Selecione: \n 1 - Pix \n 2 - Ted");
+                int transf = scanner.nextInt();
+
+            switch (transf){
+
+            case 1:
+
+            System.out.println("Qual o valor da transferência?");
+            double valTransf = scanner.nextDouble();
+
+                if((saldo>(valTransf+1.5))) {
+                    System.out.println("A transferência será efetuada. \n Cobramos uma taxa de R$ 1,50." +
+                            "Seu saldo atual é de R$ " + (saldo - valTransf-1.5));
+                }else {
+                    System.out.println("Desculpe, porém seu saldo atual não permite esta transferência." +
+                            "Saldo atual de R$ " + (saldo));
+                }
+                    break;
+
+                case 2:
+
+                    System.out.println("Qual o valor da transferência?");
+                    double valTransfTed = scanner.nextDouble();
+
+                    if(( saldo > (valTransfTed+9.8) )) {
+                    System.out.println("A transferência será efetuada. \n Cobramos uma taxa de R$ 9,80." +
+                            "Seu saldo atual é de R$ " + (saldo - valTransfTed-9.8));
+                    }else {
+                    System.out.println("Desculpe, porém seu saldo atual não permite esta transferência." +
+                            "Saldo atual de R$ " + (saldo));
+                    }
+                    break;
+
+                default:
+                    System.out.println("Opção inválida");
+
+                    break;
+
+
+
+
+
+
+                }
+
+        }
+
+    }
+
+
+#### switch case conversor moedas
+
+package Exercicios;
+
+import java.util.Scanner;
+
+public class exercicio05s02 {
+    public static void main (String[] args){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o valor em Reais que você quer converter:");
+        int real = scanner.nextInt();
+
+        System.out.println("Cotaçao Real, digite: \n 1 - Dólar \n 2 - Euro \n 3 - Libra \n 4 - Peso Argentino");
+        int cot = scanner.nextInt();
+        double cotDolar = 5.24;
+        double cotEuro = 5.53;
+        double cotLibra = 6.42;
+        double cotPeso = 0.04;
+
+        switch ( cot ){
+            case 1:
+                System.out.println("Seu valor em Dólares é de $ "+(Math.round((real/cotDolar)*100)/100.0));
+                break;
+            case 2:
+                System.out.println("Seu valor em Euros é de $ "+Math.round((real/cotEuro)*100)/100.0);
+                break;
+            case 3:
+                System.out.println("Seu valor em Libras é de $ "+ Math.round((real/cotLibra)*100)/100.0);
+                break;
+            case 4:
+                System.out.println("Seu valor em Pesos Argentino é de $ "+Math.round((real/cotPeso)*100)/100.0);
+                break;
+            default:
+                System.out.println("Opção Inválida");
+        }
+
+    }
+}
+
+
+#### tabelas operadores lógicos
+
+public class exercicio03s02 {
+    public static void main (String[] args){
+
+        int x = 12;
+        int y = 3;
+        int adicao = (x+y);
+        int subt = (x-y);
+        int mult = (x*y);
+        int div = (x/y);
+        int rest = (x%y);
+        int incremento = (x++);
+        int decremento = (x--);
+
+        System.out.println("Para x=12 e y=3");
+        System.out.println("O valor da variável 'int adicao = (x + y)' é "+ adicao);
+        System.out.println("O valor da variável 'int subtração = (x - y)' é "+ subt);
+        System.out.println("O valor da variável 'int multiplicação = (x * y)' é "+ mult);
+        System.out.println("O valor da variável 'int divisão = (x + y)' é "+ div);
+        System.out.println("O valor da variável 'int resto divisão = (x / y)%' é "+ rest);
+        System.out.println("O valor da variável 'int incremento = (x ++ )' é "+ incremento);
+        System.out.println("O valor da variável 'int decremento = (x --)' é "+ decremento);
+        System.out.println("");
+        if(x>y){
+            System.out.println("X é Maior que Y (x > y).");
+            System.out.println("X não é maior igual a Y (x >= y).");
+        } if  (y < x ) {
+            System.out.println("Y é Menor que X (y < x).");
+            System.out.println("Y não é menor igual a X (y <= x).");
+        } if ( x == x ) {
+            System.out.println("X é igual a X (x==x).");
+        } if ( x != y ) {
+            System.out.println("X é diferente de Y (x != Y).");
+        } if ( (x > y) || ( x < y)) {
+            System.out.println("X é maior que Y ou X é menor que Y (x > y) || ( x < y)).");
+        } if ( (x > y) && (x != y)) {
+            System.out.println("X é maior que Y e X é diferente de Y (x>y)&&(x != y).");
+
+
+        }
+    }
+}
+
+
+#### switch case figuras
+
+package Exercicios;
+
+import java.util.Scanner;
+
+public class exercicio04s02 {
+    public static void main (String [] args ){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Escolha uma figura abaixo para calcular sua área: \n 1 - Quadrado \n 2 - Retângulo \n 3 - Círculo \n 4 - Trapézio");
+        int fig = scanner.nextInt();
+
+        switch ( fig ){
+
+            case 1:
+                System.out.println("entre com a medida de um dos lados: ");
+                double ladoQuad = scanner.nextDouble();
+                double arQuad = ladoQuad * ladoQuad;
+                System.out.println("A área do quadrado é "+ arQuad+ "m².");
+                break;
+
+            case 2:
+                System.out.println("Entre com a medida do lado maior: ");
+                double ladomaior = scanner.nextDouble();
+                System.out.println("Entre com a medida do lado menor: ");
+                double ladomenor = scanner.nextDouble();
+                double arRet = ladomaior * ladomenor;
+                System.out.println("A área do retangulo é "+arRet+" m².");
+                break;
+
+            case 3:
+                System.out.println("entre com a medida do raio da circunferência: ");
+                double raio = scanner.nextDouble();
+                double arCirc = (3.14 * (raio*raio));
+                System.out.println("A área do quadrado é "+ arCirc + "m².");
+                break;
+
+            case 4:
+
+                System.out.println("Entre com a medida do lado maior: ");
+                double ladomaiorT = scanner.nextDouble();
+                System.out.println("Entre com a medida do lado menor: ");
+                double ladomenorT = scanner.nextDouble();
+                System.out.println("Entre com a medida da altura: ");
+                double altTrap = scanner.nextDouble();
+                double arTrap = (((ladomaiorT + ladomenorT)*altTrap)/2);
+                System.out.println("A área do retangulo é "+arTrap+" m².");
+                break;
+
+            default:
+                System.out.println("Opção inválida.");
+                break;
+        }
+    }
+}
+
+
+#### if matriculas
+
+package Exercicios;
+//Uma escola de ensino básico abriu inscrições para matrículas, as turmas são separadas por idade e
+// comprovação de formação anterior com exceção do primeiro Ano, desta forma ao realizar a
+// matrícula o aluno deverá ser direcionado para turma correspondente a sua idade e formação
+//
+//As turmas são :
+//S1 - Para maiores de 7 anos ;
+//S2 - Para maiores de 8 anos e comprovação de conclusão do ano anterior ;
+//S3 - Para maiores de 9 anos e comprovação de conclusão do ano anterior ;
+//S4 - Para maiores de 10 anos e comprovação de conclusão do ano anterior ;
+//S5 - Para maiores de 11 anos e comprovação de conclusão do ano anterior ;
+//S6 - Para maiores de 12 anos e comprovação de conclusão do ano anterior ;
+//S7 - Para maiores de 13 anos e comprovação de conclusão do ano anterior ;
+//S8 - Para maiores de 14 anos e comprovação de conclusão do ano anterior ;
+//
+//Com base no que aprendemos sobre estruturas de decisão, faça um programa que leia o nome do
+// aluno, sua idade e ano de formação comprovado, depois retorne o nome, idade e a turma para
+// qual este aluno foi direcionado. Exemplo:
+//?Aluno(a) (nomeDoAluno) , (idadeDoAluno) anos , matriculado na turma (turmaDirecionada)?
+
+
+
+import java.util.Scanner;
+
+public class exercicio02s02 {
+    public static void main  (String[] args ){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o nome do Aluno: ");
+        String nome = scanner.next();
+        System.out.println("Concluiu o ano anterior (sim ou não) ? ");
+        String conclus = scanner.next();
+
+
+        if (conclus.equalsIgnoreCase("não")){
+            System.out.println("Sinto muito, não poderemos efetuar sua matrícula.");
+            return;
+        }
+
+        System.out.println("Digite sua idade: ");
+        int idade = scanner.nextInt();
+
+
+
+
+        if((idade >= 7 ) && (idade < 8)){
+            System.out.println("Aluno(a) "+nome+", "+idade+" anos, matriculado na turma 1.");
+        }if((idade >= 8 ) && (idade < 9) ){
+            System.out.println("Aluno(a) "+nome+", "+idade+" anos, matriculado na turma 2.");
+        }if((idade >= 9 ) && (idade < 10)) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 3.");
+        }if((idade >= 10 ) && (idade < 11)) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 4.");
+        }if((idade >= 11 ) && (idade < 12)) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 5.");
+        }if((idade >= 12 ) && (idade < 13)) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 6.");
+        }if((idade >= 13 ) && (idade < 14)) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 7.");
+        }if((idade >= 14 ) ) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 8.");
+        }
+    }
+}
+
+
+#### if matriculas 2
+
+import java.util.Scanner;
+
+public class exercicio01s02 {
+    public static void main  (String[] args ){
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite o nome do Aluno: ");
+        String nome = scanner.next();
+        System.out.println("Digite sua idade: ");
+        int idade = scanner.nextInt();
+
+        if((idade >= 7 ) && (idade < 8)){
+            System.out.println("Aluno(a) "+nome+", "+idade+" anos, matriculado na turma 1.");
+        }if((idade >= 8 ) && (idade < 9)){
+            System.out.println("Aluno(a) "+nome+", "+idade+" anos, matriculado na turma 2.");
+        }if((idade >= 9 ) && (idade < 10)) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 3.");
+        }if((idade >= 10 ) && (idade < 11)) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 4.");
+        }if((idade >= 11 ) && (idade < 12)) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 5.");
+        }if((idade >= 12 ) && (idade < 13)) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 6.");
+        }if((idade >= 13 ) && (idade < 14)) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 7.");
+        }if((idade >= 14 ) ) {
+            System.out.println("Aluno(a) " + nome + ", " + idade + " anos, matriculado na turma 8.");
+        }
+    }
+}
+
+
+#### variaveis 
+
+package exercicios;
+
+//Escreva um programa que leia o nome de um aluno e as notas das três provas que ele
+// obteve no semestre. No final informar o nome do aluno e a sua média ponderada.
+//Dados:
+//	A primeira prova tem peso 3.
+//	A segunda prova tem peso 6.
+//	A terceira prova tem peso 9.
+// calcular sua média
+
+import java.util.Scanner;
+
+public class ex6 {
+    public static void main (String[] args){
+
+        Scanner ex6 = new Scanner(System.in);
+
+        System.out.println("Digite o nome do Aluno: ");
+
+        String aluno = ex6.next();
+
+        System.out.println("Digite a nota da primeira prova (peso 3): ");
+
+        double primProva = ex6.nextDouble();
+
+        System.out.println("Digite a nota da segunda prova (peso 6): ");
+
+        double segProva = ex6.nextDouble();
+
+        System.out.println("Digite a nota da terceira prova (peso 9): ");
+
+        double terProva = ex6.nextDouble();
+
+        double medPond = ((primProva * 3)+(segProva * 6)+(terProva * 9))/3;
+
+        System.out.println("O aluno, "+aluno+" obteve a média "+ medPond + ".");
+
+    }
+}
+
+
+#### variaveis
+
+package exercicios;
+//Escreva um programa em Java para
+// determinar o consumo médio de
+// um automóvel sendo fornecida a
+// distância total percorrida pelo
+// automóvel e o total de combustível
+// gasto.
+
+// perguntar distancia
+// perguntar total combGasto
+// retorna consumo médio
+
+import java.util.Scanner;
+
+public class ex5 {
+
+    public static void main(String[] args) {
+
+
+        Scanner ex5 = new Scanner(System.in);
+
+        System.out.println("Digite a distacia percorrida em kms: ");
+
+        double distancia = ex5.nextDouble();
+
+        System.out.println("Digite a quantidade de combustível gasto: ");
+
+        double totalComb = ex5.nextDouble();
+
+        double consMedio = (distancia / totalComb);
+
+        System.out.println("O consumo médio foi de " + consMedio + " km por litro.");
+    }
+
+}
+
+
+package exercicios;
+//Escreva um programa que leia o nome do vendedor, o seu salário fixo e o
+// total de vendas efetuadas por ele no mês (valor monetário).
+// Sabendo que este vendedor ganha 12% de comissão sobre suas vendas efetuadas,
+// informar o seu nome, o salário fixo e o salário no final do mês.
+
+// input nome vendedor
+// salFixo
+// valTotVendas dele no mês
+// comiss 12% sobre suas vendas
+// informar nome, salFixo e salFinal
+
+import java.util.Scanner;
+
+public class ex51 {
+    public static void main (String[] args) {
+
+        Scanner ex51 = new Scanner(System.in);
+
+        System.out.println("Nome do vendedor: ");
+
+        String nome = ex51.next();
+
+        System.out.println("Salário fixo: ");
+
+        double salFixo = ex51.nextDouble();
+
+        System.out.println("Total de vendas do mês: ");
+
+        double totVendas = ex51.nextDouble();
+
+        double comiss = 1.12;
+        double salTot = salFixo * comiss;
+
+        System.out.println("O vendedor " + nome + ", com o salário fixo igual a R$ "+salFixo+",");
+        System.out.println("receberá o valor total de seu salario mais comissões igual a R$ "+salTot+".");
+    }
+
+}
+
